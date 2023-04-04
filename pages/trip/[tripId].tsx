@@ -6,8 +6,13 @@ import { Typography } from "@mui/material";
 import { ActivityDomain } from "../../model/domain/activity-domain";
 import Link from "next/link";
 import CommentsComp from "../../design/trip/comments";
+import { TripDTO } from "../../model/dto/trip-dto";
 
-export default function TripPage({ trip }) {
+interface TypeProps {
+  trip: TripDTO;
+}
+
+export default function TripPage({ trip }: TypeProps) {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,7 +21,7 @@ export default function TripPage({ trip }) {
       </Head>
       <div className={styles.main}>
         <Image
-          src={trip.cityImgUrl}
+          src={trip.cityImgUrl!}
           alt={`${trip.cityFrom} to ${trip.cityTo}`}
           width={500}
           height={500}
@@ -72,14 +77,14 @@ export default function TripPage({ trip }) {
           <Link href={`/blog/${trip.blogId}`} className={styles.blogLink}>
             Read about this place
           </Link>
-          <CommentsComp comments={trip.comments} />
+          <CommentsComp comments={trip.comments!} />
         </div>
       </div>
     </div>
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const { tripId } = context.query;
 
   const postData = await fetch(`${fetchTripByIdUrl}${tripId}`);

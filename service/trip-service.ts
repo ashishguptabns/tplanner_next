@@ -7,6 +7,7 @@ import { URL_SAVE_POST } from "../pages/api/save-post";
 import { TripDTO } from "../model/dto/trip-dto";
 import { TripDomain } from "../model/domain/trip-domain";
 import { fetchTripsByTypeApi } from "../pages/api/fetchTripsByType/[type]";
+import { fetchTripByIdApi } from "../pages/api/fetchTripById/[tripId]";
 
 export async function validateAndSaveTripUseCase(
   tripDomain: TripDomain,
@@ -38,8 +39,8 @@ export async function fetchTripsByTypeUseCase(
     const resultBody = await response.json();
     if (resultBody.result && resultBody.result.length == 0) {
     } else {
-      var postsData: TripDTO[] = resultBody as TripDTO[];
-      success(postsData);
+      var tripsData: TripDTO[] = resultBody as TripDTO[];
+      success(tripsData);
     }
   } catch (err) {
     error(JSON.stringify(err));

@@ -20,23 +20,21 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className={styles.container}>
-        <Head>
-          <title>Plan your travel</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <div className={styles.main}>
-          <Snackbar
-            open={snackBarMsg !== ""}
-            onClose={handleSnackClose}
-            autoHideDuration={SNACK_TIMEOUT}
-            message={snackBarMsg}
-          />
-          <TripsByTypeComp type={"Nearby Trips"} />
-          <TripsByTypeComp type={"Popular Trips"} />
-        </div>
+    <div className={styles.container}>
+      <Head>
+        <title>Plan your travel</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className={styles.main}>
+        <Snackbar
+          open={snackBarMsg !== ""}
+          onClose={handleSnackClose}
+          autoHideDuration={SNACK_TIMEOUT}
+          message={snackBarMsg}
+        />
+        <TripsByTypeComp type={"Nearby Trips"} />
+        <TripsByTypeComp type={"Popular Trips"} />
       </div>
-    </>
+    </div>
   );
 }

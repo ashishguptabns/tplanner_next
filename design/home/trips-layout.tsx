@@ -10,7 +10,7 @@ import React, { FC, useEffect, useState } from "react";
 import TripCardComp from "./trip-card";
 import error from "next/error";
 import { TripDTO } from "../../model/dto/trip-dto";
-import { fetchTripsByTypeUseCase } from "../../service/trips";
+import { fetchTripsByTypeUseCase } from "../../service/trip-service";
 
 interface TypeProps {
   type: string;

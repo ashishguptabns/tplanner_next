@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  height: 100%;
+  text-align: -webkit-center;
+}
+
+.main {
+  background: white;
+  max-width: 500px;
+  width: 100%;
+  padding: 1px;
+  height: 100%;
+  text-align: left;
+}
+
+.tripDetails {
+  margin: 20px 10px 10px 10px;
+}
+
+.infoBlock {
+  margin-top: 10px;
+}
+
+.blogLink {
+  font-style: oblique;
+  margin-top: 6px;
+  color: blue;
+}

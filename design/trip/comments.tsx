@@ -1,8 +1,9 @@
-import { Button, Snackbar, TextField, Typography } from "@mui/material";
+import { Snackbar, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import Image from "next/image";
 import { CommentDomain } from "../../model/domain/comment-domain";
 import { SNACK_TIMEOUT } from "../../utils/constants";
+import TPButton from "../button";
 
 interface TypeProps {
   comments: CommentDomain[];
@@ -42,11 +43,11 @@ const CommentsComp: FC<TypeProps> = ({ comments }) => {
 
     setSnackBarMsg("");
   };
-  function postComment() {
+  const handlePostComment = () => {
     if (commentText == null || commentText.length == 0) {
       setSnackBarMsg("Please write your comment");
     }
-  }
+  };
   return (
     <div style={commentsStyle}>
       <Typography variant="h6" gutterBottom>
@@ -69,20 +70,17 @@ const CommentsComp: FC<TypeProps> = ({ comments }) => {
           label="Write your comment"
           variant="outlined"
         />
-        <Button
+        <TPButton
           style={postCommentBtnStyle}
           variant="contained"
-          onClick={() => {
-            postComment();
-          }}
-        >
-          Post
-        </Button>
+          text="Post"
+          onClick={handlePostComment}
+        />
       </div>
 
-      {comments.map((comment: CommentDomain, index) => {
+      {comments.map((comment: CommentDomain) => {
         return (
-          <div style={commentCardStyle} key={index}>
+          <div style={commentCardStyle} key={comment.commentText}>
             <img
               width={50}
               height={50}

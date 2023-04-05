@@ -7,6 +7,8 @@ import Link from "next/link";
 import CommentsComp from "../../design/trip/comments";
 import { TripDTO } from "../../model/dto/trip-dto";
 import TripSkeletonComp from "../../design/trip/skeleton";
+import TPText from "../../design/text";
+import ActivitiesComp from "../../design/trip/activities";
 
 interface TypeProps {
   trip: TripDTO;
@@ -38,65 +40,41 @@ export default function TripPage({ trip }: TypeProps) {
               alt={`${trip.cityFrom} to ${trip.cityTo}`}
             />
             <div className={styles.tripDetails}>
-              <Typography
-                sx={{ fontSize: 22 }}
-                color="text.primary"
-                gutterBottom
-              >
-                {`${trip.cityFrom} to ${trip.cityTo}`}
-              </Typography>
-              <Typography
-                sx={{ fontSize: 18 }}
-                color="text.primary"
-                gutterBottom
-              >
-                {`Budget per person: INR ${trip.totalBudget}`}
-              </Typography>
+              <TPText
+                text={`${trip.cityFrom} to ${trip.cityTo}`}
+                color={"text.primary"}
+                fontSize={22}
+              />
+              <TPText
+                text={`Budget per person: INR ${trip.totalBudget}`}
+                color={"text.primary"}
+                fontSize={18}
+              />
+
               <div className={styles.infoBlock}>
                 <Typography variant="h6" gutterBottom>
                   Inter-city travel cost
                 </Typography>
-                <Typography
-                  sx={{ fontSize: 18 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  {`INR ${trip.interCityTravelCost}`}
-                </Typography>
+                <TPText
+                  text={`INR ${trip.interCityTravelCost}`}
+                  color={"text.secondary"}
+                  fontSize={18}
+                />
               </div>
               <div className={styles.infoBlock}>
                 <Typography variant="h6" gutterBottom>
                   Within place commute cost
                 </Typography>
-                <Typography
-                  sx={{ fontSize: 18 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  {`INR ${trip.withinPlaceCommuteCost}`}
-                </Typography>
+                <TPText
+                  text={`INR ${trip.withinPlaceCommuteCost}`}
+                  color={"text.secondary"}
+                  fontSize={18}
+                />
               </div>
-              <div className={styles.infoBlock}>
-                <Typography variant="h6" gutterBottom>
-                  Activities
-                </Typography>
-                {trip.activities &&
-                  trip.activities.map((activity: ActivityDomain, index) => {
-                    return (
-                      <Typography
-                        key={index}
-                        sx={{ fontSize: 18 }}
-                        color="text.secondary"
-                        gutterBottom
-                      >
-                        {`${activity.desc}: INR ${activity.cost}`}
-                      </Typography>
-                    );
-                  })}
-              </div>
-              <Link href={`/blog/${trip.blogId}`} className={styles.blogLink}>
-                Read about this place
-              </Link>
+              <ActivitiesComp trip={trip} />
+              <p className={styles.blogLink}>
+                <Link href={`/blog/${trip.blogId}`}>Read about this place</Link>
+              </p>
               <CommentsComp comments={trip.comments!} />
             </div>
           </>

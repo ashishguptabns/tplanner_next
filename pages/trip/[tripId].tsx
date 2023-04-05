@@ -22,11 +22,10 @@ export default function TripPage({ trip }: TypeProps) {
       <div className={styles.main}>
         {trip ? (
           <>
-            <Image
-              src={trip.cityImgUrl!}
+            <img
+              width={"100%"}
+              src={trip.cityImgUrl ? trip.cityImgUrl : ""}
               alt={`${trip.cityFrom} to ${trip.cityTo}`}
-              width={500}
-              height={500}
             />
             <div className={styles.tripDetails}>
               <Typography
@@ -72,9 +71,10 @@ export default function TripPage({ trip }: TypeProps) {
                   Activities
                 </Typography>
                 {trip.activities &&
-                  trip.activities.map((activity: ActivityDomain) => {
+                  trip.activities.map((activity: ActivityDomain, index) => {
                     return (
                       <Typography
+                        key={index}
                         sx={{ fontSize: 18 }}
                         color="text.secondary"
                         gutterBottom
@@ -110,7 +110,7 @@ export default function TripPage({ trip }: TypeProps) {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { tripId: "1" } }, { params: { tripId: "2" } }],
+    paths: [{ params: { tripId: "1axfjWU3Qo6QR30ppaiA" } }],
     fallback: true,
   };
 }

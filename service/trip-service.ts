@@ -7,7 +7,6 @@ import { URL_SAVE_POST } from "../pages/api/save-post";
 import { TripDTO } from "../model/dto/trip-dto";
 import { TripDomain } from "../model/domain/trip-domain";
 import { fetchTripsByTypeApi } from "../pages/api/fetchTripsByType/[type]";
-import { fetchTripByIdApi } from "../pages/api/fetchTripById/[tripId]";
 
 export async function validateAndSaveTripUseCase(
   tripDomain: TripDomain,

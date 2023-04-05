@@ -1,7 +1,8 @@
-import { Typography } from "@mui/material";
-import { FC } from "react";
+import { Button, Snackbar, TextField, Typography } from "@mui/material";
+import { FC, useState } from "react";
 import Image from "next/image";
 import { CommentDomain } from "../../model/domain/comment-domain";
+import { SNACK_TIMEOUT } from "../../utils/constants";
 
 interface TypeProps {
   comments: CommentDomain[];
@@ -18,12 +19,67 @@ const commentImgStyle = {
   borderRadius: "25px",
   marginRight: "12px",
 };
+const postCommentStyle = {};
+const postCommentBtnStyle = {
+  width: "100px",
+  height: "40px",
+  marginTop: "-30px",
+  marginRight: "6px",
+  right: "0",
+  float: "right" as const,
+};
 const CommentsComp: FC<TypeProps> = ({ comments }) => {
+  const [commentText, setCommentText] = useState<string>();
+  const [snackBarMsg, setSnackBarMsg] = useState<string>("");
+
+  const handleSnackClose = (
+    _event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnackBarMsg("");
+  };
+  function postComment() {
+    if (commentText == null || commentText.length == 0) {
+      setSnackBarMsg("Please write your comment");
+    }
+  }
   return (
     <div style={commentsStyle}>
       <Typography variant="h6" gutterBottom>
         Comments
       </Typography>
+      <div style={postCommentStyle}>
+        <Snackbar
+          open={snackBarMsg !== ""}
+          onClose={handleSnackClose}
+          autoHideDuration={SNACK_TIMEOUT}
+          message={snackBarMsg}
+        />
+        <TextField
+          fullWidth={true}
+          multiline={true}
+          onChange={(event) => {
+            setCommentText(event.target.value);
+          }}
+          margin="dense"
+          label="Write your comment"
+          variant="outlined"
+        />
+        <Button
+          style={postCommentBtnStyle}
+          variant="contained"
+          onClick={() => {
+            postComment();
+          }}
+        >
+          Post
+        </Button>
+      </div>
+
       {comments.map((comment: CommentDomain, index) => {
         return (
           <div style={commentCardStyle} key={index}>

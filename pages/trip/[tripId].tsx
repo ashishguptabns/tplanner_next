@@ -7,6 +7,7 @@ import { ActivityDomain } from "../../model/domain/activity-domain";
 import Link from "next/link";
 import CommentsComp from "../../design/trip/comments";
 import { TripDTO } from "../../model/dto/trip-dto";
+import TripSkeletonComp from "../../design/trip/skeleton";
 
 interface TypeProps {
   trip: TripDTO;
@@ -91,17 +92,7 @@ export default function TripPage({ trip }: TypeProps) {
             </div>
           </>
         ) : (
-          <>
-            <Skeleton variant="rectangular" height={"260px"} />
-            <br />
-            <Skeleton variant="rectangular" height={"40px"} />
-            <br />
-            <Skeleton variant="rectangular" height={"40px"} />
-            <br />
-            <Skeleton variant="rectangular" height={"260px"} />
-            <br />
-            <Skeleton variant="rectangular" height={"40px"} />
-          </>
+          <TripSkeletonComp />
         )}
       </div>
     </div>

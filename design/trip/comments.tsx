@@ -1,4 +1,4 @@
-import { Link, Skeleton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { FC } from "react";
 import Image from "next/image";
 import { CommentDomain } from "../../model/domain/comment-domain";

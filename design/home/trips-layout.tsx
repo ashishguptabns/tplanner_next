@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import TripCardComp from "./trip-card";
 import { TripDTO } from "../../model/dto/trip-dto";

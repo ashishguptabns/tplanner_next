@@ -1,8 +1,7 @@
 import { fetchTripByIdUrl } from "../api/fetchTripById/[tripId]";
-import Image from "next/image";
 import Head from "next/head";
 import styles from "./trip.module.css";
-import { Skeleton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { ActivityDomain } from "../../model/domain/activity-domain";
 import Link from "next/link";
 import CommentsComp from "../../design/trip/comments";
@@ -18,7 +17,17 @@ export default function TripPage({ trip }: TypeProps) {
     <div className={styles.container}>
       <Head>
         <title>{trip ? trip.cityTo : "Trip"}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Plan your travel" />
+        <meta
+          property="og:description"
+          content="Use TPlanner app to easily plan your travels!"
+        />
+        <meta property="og:image" content="public/favicon.png" />
+        <meta
+          name="description"
+          content="Use TPlanner app to easily plan your travels!"
+        />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <div className={styles.main}>
         {trip ? (
@@ -107,9 +116,7 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps(context: any) {
   const { tripId } = context.params;
-  const postData = await fetch(`${fetchTripByIdUrl}${tripId}`, {
-    next: { revalidate: 60 * 60 },
-  });
+  const postData = await fetch(`${fetchTripByIdUrl}${tripId}`);
   console.log(postData);
   const jsonData = await postData.json();
 

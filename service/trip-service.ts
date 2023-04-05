@@ -34,7 +34,7 @@ export async function fetchTripsByTypeUseCase(
   error: (msg: string) => void
 ) {
   try {
-    const response = await fetch(fetchTripsByTypeApi + `${type}`);
+    const response = await fetch(`${fetchTripsByTypeApi}${type}`);
     const resultBody = await response.json();
     if (resultBody.result && resultBody.result.length == 0) {
     } else {

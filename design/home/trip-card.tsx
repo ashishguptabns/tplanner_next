@@ -6,7 +6,11 @@ import { TripDTO } from "../../model/dto/trip-dto";
 interface TypeProps {
   trip: TripDTO;
 }
-const tripCardImgStyle = { height: "160px", borderRadius: "4px" };
+const tripCardImgStyle = {
+  width: "230px",
+  height: "160px",
+  borderRadius: "4px",
+};
 const tripCardStyle = { margin: "10px 0 10px 8px" };
 const TripCardComp: FC<TypeProps> = ({ trip }) => {
   return (

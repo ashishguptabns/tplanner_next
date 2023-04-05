@@ -8,7 +8,7 @@ interface ButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button: FC<ButtonProps> = ({ style, text, variant, onClick }) => {
+const TPButton: FC<ButtonProps> = ({ style, text, variant, onClick }) => {
   return (
     <Matbutton variant={variant} onClick={onClick} style={style}>
       {text}
@@ -16,4 +16,4 @@ const Button: FC<ButtonProps> = ({ style, text, variant, onClick }) => {
   );
 };
 
-export default Button;
+export default TPButton;

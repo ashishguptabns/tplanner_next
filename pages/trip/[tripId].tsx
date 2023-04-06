@@ -1,14 +1,13 @@
-import { fetchTripByIdUrl } from "../api/fetchTripById/[tripId]";
 import Head from "next/head";
 import styles from "./trip.module.css";
 import { Typography } from "@mui/material";
-import { ActivityDomain } from "../../model/domain/activity-domain";
 import Link from "next/link";
 import CommentsComp from "../../design/trip/comments";
 import { TripDTO } from "../../model/dto/trip-dto";
 import TripSkeletonComp from "../../design/trip/skeleton";
 import TPText from "../../design/text";
 import ActivitiesComp from "../../design/trip/activities";
+import { getTripData } from "../api/fetchTripById/[tripId]";
 
 interface TypeProps {
   trip: TripDTO;
@@ -94,27 +93,11 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps(context: any) {
   const { tripId } = context.params;
-  const postData = await fetch(`${fetchTripByIdUrl}${tripId}`);
-  console.log(postData);
-  const jsonData = await postData.json();
+  const postData = await getTripData(tripId as string);
 
   return {
     props: {
-      trip: jsonData,
+      trip: postData,
     },
   };
 }
-
-// export async function getServerSideProps(context: any) {
-//   const { tripId } = context.query;
-
-//   const postData = await fetch(`${fetchTripByIdUrl}${tripId}`, {
-//     next: { revalidate: 60 * 60 },
-//   });
-//   const jsonData = await postData.json();
-//   return {
-//     props: {
-//       trip: jsonData,
-//     },
-//   };
-// }

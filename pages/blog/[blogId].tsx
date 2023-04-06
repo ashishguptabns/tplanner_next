@@ -3,7 +3,7 @@ import styles from "./blog.module.css";
 import { Typography } from "@mui/material";
 import TripSkeletonComp from "../../design/trip/skeleton";
 import { BlogDTO } from "../../model/dto/blog-dto";
-import { fetchBlogByIdUrl } from "../api/fetchBlogById/[blogId]";
+import { getBlogData } from "../api/fetchBlogById/[blogId]";
 
 interface TypeProps {
   blog: BlogDTO;
@@ -35,9 +35,11 @@ export default function BlogPage({ blog }: TypeProps) {
               alt={blog.text}
             />
             <Typography
-              sx={{ fontSize: 22 }}
+              sx={{ fontSize: 18 }}
               margin={"10px"}
+              whiteSpace={"pre-wrap"}
               color="text.primary"
+              paddingBottom={20}
               gutterBottom
             >
               {blog.text}
@@ -59,12 +61,11 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps(context: any) {
   const { blogId } = context.params;
-  const postData = await fetch(`${fetchBlogByIdUrl}${blogId}`);
-  const jsonData = await postData.json();
+  const postData = await getBlogData(blogId);
 
   return {
     props: {
-      blog: jsonData,
+      blog: postData,
     },
   };
 }

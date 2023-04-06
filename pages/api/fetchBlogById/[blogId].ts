@@ -3,7 +3,7 @@ import { baseUrl } from "../../../utils/constants";
 import { ResponseCode } from "../../../model/domain/response";
 
 export const fetchBlogByIdApi = "api/fetchBlogById/";
-export const fetchBlogByIdUrl = `${baseUrl}/fetchBlogById/?id=`;
+const fetchBlogByIdUrl = `${baseUrl}/fetchBlogById/?id=`;
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,14 +12,17 @@ export default async function handler(
   try {
     const { blogId } = req.query;
     if (blogId) {
-      const response = await fetch(fetchBlogByIdUrl + `${blogId}`, {
-        next: { revalidate: 60 * 60 },
-      });
-      const data = await response.json();
+      const data = await getBlogData(blogId as string);
       res.status(ResponseCode.OK).json(data);
     }
   } catch (err) {
     console.log(err);
     res.status(ResponseCode.FAIL);
   }
+}
+export async function getBlogData(blogId: string) {
+  const response = await fetch(fetchBlogByIdUrl + `${blogId}`, {
+    next: { revalidate: 60 * 60 },
+  });
+  return await response.json();
 }

@@ -8,7 +8,7 @@ import TPButton from "../button";
 interface TypeProps {
   comments: CommentDomain[];
 }
-const commentsStyle = { marginTop: "10px" };
+const commentsStyle = { marginTop: "10px", paddingBottom: "16px" };
 const commentCardStyle = {
   marginTop: "16px",
   display: "flex",

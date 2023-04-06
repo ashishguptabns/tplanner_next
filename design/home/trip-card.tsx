@@ -11,7 +11,7 @@ const tripCardImgStyle = {
   height: "160px",
   borderRadius: "4px",
 };
-const tripCardStyle = { margin: "10px 0 10px 8px" };
+const tripCardStyle = { marginTop: "10px" };
 const TripCardComp: FC<TypeProps> = ({ trip }) => {
   return (
     <div style={tripCardStyle}>

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { baseUrl } from "../../utils/constants";
 import { ResponseCode } from "../../model/domain/response";
 
-export const URL_SAVE_POST = "api/save-post";
+export const savePostApi = "api/save-post";
 const saveFlatPostUrl = `${baseUrl}/saveFlatPost`;
 
 export default async function handler(

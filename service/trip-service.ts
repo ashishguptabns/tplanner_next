@@ -3,7 +3,7 @@ import {
   ResponseType,
   ServerResponse,
 } from "../model/domain/response";
-import { URL_SAVE_POST } from "../pages/api/save-post";
+import { savePostApi } from "../pages/api/save-post";
 import { TripDTO } from "../model/dto/trip-dto";
 import { TripDomain } from "../model/domain/trip-domain";
 import { fetchTripsByTypeApi } from "../pages/api/fetchTripsByType/[type]";
@@ -14,7 +14,7 @@ export async function validateAndSaveTripUseCase(
   success: (serverResponse: ServerResponse) => void
 ) {
   try {
-    const response = await fetch(URL_SAVE_POST, {
+    const response = await fetch(savePostApi, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

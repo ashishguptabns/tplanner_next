@@ -1,8 +1,8 @@
 import { Skeleton, Typography } from "@mui/material";
 import { FC } from "react";
-import { ActivityDomain } from "../../model/domain/activity-domain";
+import { ActivityDomain } from "../../model/activity";
 import TPText from "../text";
-import { TripDomain } from "../../model/domain/trip-domain";
+import { TripDomain } from "../../model/trip";
 
 interface TypeProps {
   trip: TripDomain;

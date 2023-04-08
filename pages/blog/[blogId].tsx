@@ -2,8 +2,8 @@ import Head from "next/head";
 import styles from "./blog.module.css";
 import { Typography } from "@mui/material";
 import TripSkeletonComp from "../../design/trip/skeleton";
-import { BlogDTO } from "../../model/dto/blog-dto";
-import { getBlogData } from "../api/fetchBlogById/[blogId]";
+import { BlogDTO } from "../../model/blog";
+import { getBlogData } from "../../service/blog-service";
 
 interface TypeProps {
   blog: BlogDTO;

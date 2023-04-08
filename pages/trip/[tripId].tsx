@@ -3,14 +3,14 @@ import styles from "./trip.module.css";
 import { Typography } from "@mui/material";
 import Link from "next/link";
 import CommentsComp from "../../design/trip/comments";
-import { TripDTO } from "../../model/dto/trip-dto";
 import TripSkeletonComp from "../../design/trip/skeleton";
 import TPText from "../../design/text";
 import ActivitiesComp from "../../design/trip/activities";
-import { getTripData } from "../api/fetchTripById/[tripId]";
+import { TripDomain } from "../../model/trip";
+import { getTripData } from "../../service/trip-service";
 
 interface TypeProps {
-  trip: TripDTO;
+  trip: TripDomain;
 }
 
 export default function TripPage({ trip }: TypeProps) {

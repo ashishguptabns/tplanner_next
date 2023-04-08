@@ -1,7 +1,7 @@
 import { Snackbar, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import Image from "next/image";
-import { CommentDomain } from "../../model/domain/comment-domain";
+import { CommentDomain } from "../../model/comment";
 import { SNACK_TIMEOUT } from "../../utils/constants";
 import TPButton from "../button";
 

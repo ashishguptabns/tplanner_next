@@ -4,6 +4,7 @@ import Image from "next/image";
 import { CommentDomain } from "../../model/comment";
 import { SNACK_TIMEOUT } from "../../utils/constants";
 import TPButton from "../button";
+import { isEmptyStr } from "../../utils/helpers";
 
 interface TypeProps {
   comments: CommentDomain[];
@@ -44,7 +45,7 @@ const CommentsComp: FC<TypeProps> = ({ comments }) => {
     setSnackBarMsg("");
   };
   const handlePostComment = () => {
-    if (commentText == null || commentText.length == 0) {
+    if (isEmptyStr(commentText) || commentText!.length == 0) {
       setSnackBarMsg("Please write your comment");
     }
   };

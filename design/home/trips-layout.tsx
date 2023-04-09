@@ -11,6 +11,7 @@ const gridStyle = {
   display: "inline-grid",
   gridTemplateColumns: "1fr 1fr",
   columnGap: "10px",
+  width: "100%",
 };
 const cardStyle = {
   minHeight: "300px",
@@ -37,7 +38,7 @@ const TripsByTypeComp: FC<TypeProps> = ({ type }) => {
       </Typography>
       <div style={gridStyle}>
         {trips.map((trip) => {
-          return <TripCardComp trip={trip!} key={trip.id} />;
+          return <TripCardComp trip={trip} key={trip.id} />;
         })}
       </div>
     </div>
